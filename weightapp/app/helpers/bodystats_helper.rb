@@ -1,0 +1,2 @@
+module BodystatsHelper
+end

@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  date: 2016-04-23
+  body_weight: 9.99
+  body_water: 9.99
+  body_fat: 9.99
+  bone_weight: 9.99
+  viseral_fat: 9.99
+  muscle_mass: 9.99
+  bmi: 9.99
+  bmr: 9.99
+
+two:
+  date: 2016-04-23
+  body_weight: 9.99
+  body_water: 9.99
+  body_fat: 9.99
+  bone_weight: 9.99
+  viseral_fat: 9.99
+  muscle_mass: 9.99
+  bmi: 9.99
+  bmr: 9.99
