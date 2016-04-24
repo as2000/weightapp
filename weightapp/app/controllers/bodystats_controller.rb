@@ -9,8 +9,10 @@ class BodystatsController < ApplicationController
 
 
 	def create
-		render plain: params
+		render plain: "ok"
+		date = DateTime.parse(params[:bodystat][:date])
 		@bodystat = Bodystat.new(bodystat_params)
+		@bodystat.date = date
 		@bodystat.save
 	end
 
