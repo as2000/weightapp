@@ -1,5 +1,7 @@
+
 <table>
 	<tr>
+		<th>ID</th>
 		<th>Date</th>
 		<th>Body Weight KG</th>
 		<th>Body Water %</th>
@@ -13,15 +15,18 @@
 
 	<% @bodystats.each do |stat| %>
 		<tr>
-			<td><%=  stat.date %></td>
-			<td><%=  stat.body_weight %></td>
-			<td><%=  stat.body_water %></td>
-			<td><%=  stat.body_fat %></td>
-			<td><%=  stat.bone_weight %></td>
-			<td><%=  stat.visceral_fat %></td>
-			<td><%=  stat.muscle_mass %></td>
-			<td><%=  stat.bmi %></td>
-			<td><%=  stat.bmr %></td>
-		</tr>
+			<td><%= stat.id %></td>
+			<td><%= stat.date %></td>
+			<td><%= stat.body_weight %></td>
+			<td><%= stat.body_water %></td>
+			<td><%= stat.body_fat %></td>
+			<td><%= stat.bone_weight %></td>
+			<td><%= stat.visceral_fat %></td>
+			<td><%= stat.muscle_mass %></td>
+			<td><%= stat.bmi %></td>
+			<td><%= stat.bmr %></td>
+ 			<td><%= link_to 'Destroy', bodystat_path(stat),
+              method: :delete,
+              data: { confirm: 'Are you sure?' } %></td>		</tr>
 	<% end %> 
 </table>

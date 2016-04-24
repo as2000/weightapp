@@ -2,9 +2,6 @@ class BodystatsController < ApplicationController
 	protect_from_forgery :except => :create 
 
 
-	def new
-		
-	end
 
 	def index
 		@bodystats = Bodystat.all
@@ -15,9 +12,15 @@ class BodystatsController < ApplicationController
 		render plain: params
 		@bodystat = Bodystat.new(bodystat_params)
 		@bodystat.save
-
-
 	end
+
+	def destroy
+	  @bodystat = Bodystat.find(params[:id])
+	  @bodystat.destroy
+	 
+	  redirect_to bodystats_path
+	end
+
 
 	private
 		def bodystat_params
