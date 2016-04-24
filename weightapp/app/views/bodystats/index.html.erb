@@ -1,16 +1,31 @@
 <%= javascript_include_tag "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" %>
 <%= stylesheet_link_tag "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" %>
+<meta name="viewport" content="initial-scale=1">
 
 
 
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">Weightapp</a>
+    </div>
 
-<div class="container">
-	<nav class="navbar navbar-default">
-		<ul class="nav navbar-nav">
-				<li><%= link_to "Stats", bodystats_path %></td></li>
-			<li><%= link_to "google", "http://google.com" %></li>
-		</ul>
-	</nav>
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+			<ul class="nav navbar-nav" role="tablist">
+				<li class="active"><%= link_to "Stats", bodystats_path %></td></li>
+				<li><%= link_to "Google", "http://google.com" %></li>
+			</ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
 
 	<div class="col-xs-12">
 		<div class="panel panel-default">
