@@ -11,10 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160423221109) do
+ActiveRecord::Schema.define(version: 20160424164843) do
 
   create_table "bodystats", force: :cascade do |t|
-    t.date     "date"
+    t.datetime "date"
     t.decimal  "body_weight"
     t.decimal  "body_water"
     t.decimal  "body_fat"
