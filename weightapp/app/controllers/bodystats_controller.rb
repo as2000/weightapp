@@ -4,7 +4,7 @@ class BodystatsController < ApplicationController
 
 
 	def index
-		@bodystats = Bodystat.all
+		@bodystats = Bodystat.order(date: :asc)
 	end
 
 
