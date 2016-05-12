@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   resources :bodystats
+  resources :imports
   root 'list#index'
 
   post 'bodystats/fart' => 'bodystats#fart'

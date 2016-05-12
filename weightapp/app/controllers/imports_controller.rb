@@ -1,11 +1,12 @@
 class ImportsController < ApplicationController
   before_action :set_import, only: [:show, :edit, :update, :destroy]
 
+  skip_before_filter :verify_authenticity_token  
   # GET /imports
   # GET /imports.json
   def index
-    @imports = Import.all
-    render_plain :hello
+   # @imports = Import.all
+    render plain: :hello
   end
 
   # GET /imports/1
@@ -25,17 +26,10 @@ class ImportsController < ApplicationController
   # POST /imports
   # POST /imports.json
   def create
-    @import = Import.new(import_params)
+    File.write('/Users/aiden/src/out.txt', params)
 
-    respond_to do |format|
-      if @import.save
-        format.html { redirect_to @import, notice: 'Import was successfully created.' }
-        format.json { render :show, status: :created, location: @import }
-      else
-        format.html { render :new }
-        format.json { render json: @import.errors, status: :unprocessable_entity }
-      end
-    end
+    render plain: params
+
   end
 
   # PATCH/PUT /imports/1
