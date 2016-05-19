@@ -16,7 +16,7 @@ class ImportsController < ApplicationController
 
   # GET /imports/new
   def new
-    @import = Import.new
+    logger.debug params 
   end
 
   # GET /imports/1/edit
@@ -26,10 +26,10 @@ class ImportsController < ApplicationController
   # POST /imports
   # POST /imports.json
   def create
-    File.write('/Users/aiden/src/out.txt', params)
+    File.write('/Users/aiden/src/out.txt', params['Subject'])
 
-    render plain: params
-
+    logger.debug "subject: " + params['Subject']
+    render plain: :thanks
   end
 
   # PATCH/PUT /imports/1
