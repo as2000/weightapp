@@ -1,5 +1,7 @@
 class BodystatsController < ApplicationController
-	protect_from_forgery :except => :create 
+	protect_from_forgery :except => :create :
+
+    another test i think
 
 
 
