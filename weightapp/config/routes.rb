@@ -1,10 +1,10 @@
 Rails.application.routes.draw do
   resources :bodystats
-  resources :imports
+  
   root 'list#index'
 
-  post 'bodystats/fart' => 'bodystats#fart'
 
+  post 'imports#new'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

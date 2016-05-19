@@ -41,5 +41,8 @@ class BodystatsController < ApplicationController
 			)
 		end
 
+    def
+§
+    end
 
 end

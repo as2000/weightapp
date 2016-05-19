@@ -9,6 +9,11 @@ class ImportsController < ApplicationController
     render plain: :hello
   end
 
+  def
+    parameters /Users:
+    
+  end
+
   # GET /imports/1
   # GET /imports/1.json
   def show
