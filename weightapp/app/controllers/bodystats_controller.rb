@@ -12,6 +12,7 @@ protect_from_forgery :except => [:create, :mailgun_create]
 
   def mailgun_create
     logger.debug :hello
+    logger.debug params['body-plain']
     render plain: "ok"
 
   end
