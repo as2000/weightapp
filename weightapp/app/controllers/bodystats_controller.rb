@@ -1,13 +1,5 @@
 class BodystatsController < ApplicationController
-	protect_from_forgery :except => :create :
-
-    another test i think
-
-
-
-	def index
-		@bodystats = Bodystat.order(date: :asc)
-	end
+protect_from_forgery :except => [:create, :mailgun_create]	
 
 
 	def create
@@ -17,6 +9,12 @@ class BodystatsController < ApplicationController
 		@bodystat.date = date
 		@bodystat.save
 	end
+
+  def mailgun_create
+    logger.debug :hello
+    render plain: "ok"
+
+  end
 
 	def destroy
 	  @bodystat = Bodystat.find(params[:id])
@@ -41,8 +39,5 @@ class BodystatsController < ApplicationController
 			)
 		end
 
-    def
-§
-    end
 
 end
