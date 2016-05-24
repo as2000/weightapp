@@ -19,34 +19,53 @@ protect_from_forgery :except => [:create, :mailgun_create]
    # logger.debug params['body-plain']
     
     data = params['body-plain'].split("\r\n")
-    logger.debug data
-        #case data[0]
-          #when "Time"
-            #date = get_date(data[1])
-            #puts date.to_s
-            #statHash[:bodystat][:date] = date.to_s
-          #when "Weight"
-            #statHash[:bodystat][:body_weight] = data[1].tr("kg", '')
-          #when "Body Water"
-            #statHash[:bodystat][:body_water] = data[1].tr("%", '')
-          #when "Body Fat"
-            #statHash[:bodystat][:body_fat] = data[1].tr("%", '')
-          #when "Bone"
-            #statHash[:bodystat][:bone_weight] = data[1].tr("%", '')
-          #when "BMI"
-            #statHash[:bodystat][:bmi] = data[1].tr("%", '')
-          #when "Visceral Fat"
-            #statHash[:bodystat][:visceral_fat] = data[1].tr("%", '')
-          #when "BMR"
-            #statHash[:bodystat][:bmr] = data[1].tr(" kcal", '')
-          #when "Muscle Mass"
-            #statHash[:bodystat][:muscle_mass] = data[1].tr("%", '')
-        #end
-        data.shift
-        data.each do | stat |
-         logger.debug stat 
-        end
-        render plain: statHash
+    #logger.debug data
+    statHash = Hash.new
+    statHash[:bodystat] = Hash.new
+    data.shift
+    data.each do | stat |
+      stat = stat.split(":")
+      logger.debug stat 
+      case stat[0] 
+        #when "Time"
+          #logger.debug "in time"
+          #date = get_date(stat)
+          #puts date.to_s
+          #statHash[:bodystat][:date] = date.to_s
+        when "Weight"
+          statHash[:bodystat][:body_weight] = stat[1].tr("kg", '')
+           logger.debug "in weight"
+        when "Body Water"
+          statHash[:bodystat][:body_water] = stat[1].tr("%", '')
+        when "Body Fat"
+          statHash[:bodystat][:body_fat] = stat[1].tr("%", '')
+        when "Bone"
+          statHash[:bodystat][:bone_weight] = stat[1].tr("%", '')
+        when "BMI"
+          statHash[:bodystat][:bmi] = stat[1].tr("%", '')
+        when "Visceral Fat"
+          statHash[:bodystat][:visceral_fat] = stat[1].tr("%", '')
+        when "BMR"
+          statHash[:bodystat][:bmr] = stat[1].tr(" kcal", '')
+        when "Muscle Mass"
+          statHash[:bodystat][:muscle_mass] = stat[1].tr("%", '')
+      end
+    end
+    logger.debug "out case "
+    logger.debug statHash[:bodystat]
+
+    statHash.each do |stat|
+      logger.debug stat
+    end
+
+  #date = DateTime.parse(statHash[:bodystat][:date])
+  #@bodystat = Bodystat.new(bodystat_params)
+  #@bodystat.date = date
+  #@bodystat.save
+
+
+
+    render plain: statHash 
 
   end
 
