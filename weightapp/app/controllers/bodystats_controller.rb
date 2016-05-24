@@ -1,6 +1,10 @@
 class BodystatsController < ApplicationController
 protect_from_forgery :except => [:create, :mailgun_create]	
 
+  def index
+        @bodystats = Bodystat.order(date: :asc)
+ 
+  end
 
 	def create
 		render plain: "ok"
