@@ -12,11 +12,19 @@
         data: {
             url: '/bodystats/show',
             mimeType: 'json',
+            xFormat: '%Y-%m-%dT%H:%M:%S.%LZ',
             keys: {
-              x: 'id',
-              xFormat: '%Y-%m-%dT%H:%M:%S.%fZ',
+              x: 'date',
               value: ['body_weight']
             }
+        },
+        axis : {
+          x : {
+            type : 'timeseries',
+            tick : {
+              format : "%y%m%d" // https://github.com/mbostock/d3/wiki/Time-Formatting#wiki-format
+            }
+          }
         }
       })
     </script>
