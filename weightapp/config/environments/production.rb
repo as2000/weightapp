@@ -1,4 +1,7 @@
 Rails.application.configure do
+
+  # add this line
+  config.logger = Logger.new(STDOUT)
   # Settings specified here will take precedence over those in config/application.rb.
 
   # Code is not reloaded between requests.
