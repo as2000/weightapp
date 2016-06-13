@@ -23,7 +23,6 @@ class BodystatsController < ApplicationController
     statHash = Hash.new
     #statHash = Hash.new
     data.shift
-     byebug
     data.each do | stat |
       stat = stat.split(":", 2)
       case stat[0]
