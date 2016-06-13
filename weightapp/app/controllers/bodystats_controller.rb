@@ -23,6 +23,7 @@ class BodystatsController < ApplicationController
     statHash = Hash.new
     #statHash = Hash.new
     data.shift
+    # byebug
     data.each do | stat |
       stat = stat.split(":", 2)
       case stat[0]
@@ -39,10 +40,14 @@ class BodystatsController < ApplicationController
         when "Body Fat"
           statHash[:body_fat] = stat[1].tr("%", '')
         when "Bone"
-          if stat.length > 2
-            statHash[:bmi] = stat[2].tr("BMI", '')
+          if stat[1].include? "BMI"
+            stat = stat[1].split(',')
+            statHash[:bone_weight] = stat[0].tr("kg", '')
+            statHash[:bmi] = stat[1].tr("BMI", '')
+          else
+            statHash[:bone_weight] = stat[1].tr("kg", '')
           end
-          statHash[:bone_weight] = stat[1].tr("kg", '')
+
         when "BMI"
           statHash[:bmi] = stat[1].tr("%", '')
         when "Visceral Fat"
