@@ -4,7 +4,9 @@ class BodystatsController < ApplicationController
 
   def index
         @bodystats = Bodystat.order(date: :desc)
-
+        # @bodystats.each do | stat |
+        #   stat[:body_weight] = stat[:body_weight] * 9
+        # end
   end
 
 	def create
@@ -23,7 +25,6 @@ class BodystatsController < ApplicationController
     data.shift
     data.each do | stat |
       stat = stat.split(":", 2)
-      logger.debug stat
       case stat[0]
         when "Time"
           time = stat[1].split(", ").first
@@ -38,7 +39,10 @@ class BodystatsController < ApplicationController
         when "Body Fat"
           statHash[:body_fat] = stat[1].tr("%", '')
         when "Bone"
-          statHash[:bone_weight] = stat[1].tr("%", '')
+          if stat.length > 2
+            statHash[:bmi] = stat[2].tr("BMI", '')
+          end
+          statHash[:bone_weight] = stat[1].tr("kg", '')
         when "BMI"
           statHash[:bmi] = stat[1].tr("%", '')
         when "Visceral Fat"
