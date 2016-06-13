@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   resources :bodystats
+  resources :charts
   root 'list#index'
   post '/mailgun/', to: 'bodystats#mailgun_create'
   # The priority is based upon order of creation: first created -> highest priority.

@@ -61,6 +61,11 @@ class BodystatsController < ApplicationController
 	  redirect_to bodystats_path
 	end
 
+  def show
+    render json: Bodystat.order(date: :asc)
+
+  end
+
 
 	private
 		def bodystat_params
