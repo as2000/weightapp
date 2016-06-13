@@ -3,7 +3,7 @@ class BodystatsController < ApplicationController
   protect_from_forgery :except => [:create, :mailgun_create]
 
   def index
-        @bodystats = Bodystat.order(date: :asc)
+        @bodystats = Bodystat.order(date: :desc)
 
   end
 
