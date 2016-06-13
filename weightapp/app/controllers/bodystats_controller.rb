@@ -63,7 +63,6 @@ class BodystatsController < ApplicationController
 
   def show
     render json: Bodystat.order(date: :asc)
-
   end
 
 
