@@ -1,1 +1,32 @@
-hello world
+<html>
+  <head>
+    <link href="/css/c3.css" rel="stylesheet" type="text/css">
+  </head>
+  <body>
+    <div id="chart"></div>
+
+    <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+    <script>
+
+      var chart = c3.generate({
+        data: {
+            url: '/bodystats/show',
+            mimeType: 'json',
+            xFormat: '%Y-%m-%dT%H:%M:%S.%LZ',
+            keys: {
+              x: 'date',
+              value: ['body_weight']
+            }
+        },
+        axis : {
+          x : {
+            type : 'timeseries',
+            tick : {
+              format : "%y%m%d" // https://github.com/mbostock/d3/wiki/Time-Formatting#wiki-format
+            }
+          }
+        }
+      })
+    </script>
+  </body>
+</html>
