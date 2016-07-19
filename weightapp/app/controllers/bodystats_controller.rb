@@ -4,9 +4,9 @@ class BodystatsController < ApplicationController
 
   def index
         @bodystats = Bodystat.order(date: :desc)
-        # @bodystats.each do | stat |
-        #   stat[:body_weight] = stat[:body_weight] * 9
-        # end
+        @weight_array = generate_weight_array(@bodystats)
+
+
   end
 
 	def create
@@ -19,9 +19,7 @@ class BodystatsController < ApplicationController
 
   def mailgun_create
     data = params['body-plain'].split("\r\n")
-    #logger.debug data
     statHash = Hash.new
-    #statHash = Hash.new
     data.shift
     data.each do | stat |
       stat = stat.split(":", 2)
@@ -89,6 +87,23 @@ class BodystatsController < ApplicationController
 				:bmr
 			)
 		end
+
+    def array_to_json(array)
+      out = "["
+      array.each do |item|
+        out += item.to_s + ","
+      end
+      out.chomp! ","
+      out +="]"
+    end
+
+    def generate_weight_array(bodystats)
+      weight_array = Array.new
+        bodystats.reverse.each do | stat |
+           weight_array << stat[:body_weight]
+        end
+        weight_array = array_to_json weight_array
+    end
 
 
 end
