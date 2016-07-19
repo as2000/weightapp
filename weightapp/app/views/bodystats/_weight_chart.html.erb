@@ -1,0 +1,29 @@
+<script>
+
+$(function () {
+    $('#container').highcharts({
+        title: {
+            text: 'Weight',
+            x: -20 //center
+        },
+        subtitle: {
+            text: 'kg',
+            x: -20
+        },
+        
+        yAxis: {
+            title: {
+                text: 'Temperature (°C)'
+            }
+        },
+        tooltip: {
+            valueSuffix: 'kg'
+        },
+        series: [{
+            data: <%=  @weight_array %>
+
+        }]
+    });
+});
+</script>
+
