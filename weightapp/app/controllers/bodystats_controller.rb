@@ -100,7 +100,7 @@ class BodystatsController < ApplicationController
     def generate_weight_array(bodystats)
       weight_array = Array.new
         bodystats.reverse.each do | stat |
-           weight_array << stat[:body_weight]
+           weight_array << stat[:body_weight] * 2.205
         end
         weight_array = array_to_json weight_array
     end
