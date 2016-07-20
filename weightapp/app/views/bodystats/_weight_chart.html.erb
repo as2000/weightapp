@@ -25,23 +25,18 @@ $(function () {
             }
         },
         tooltip: {
-            formatter: function () {
-                return this.y + ' <b>lbs</b>';
-            }
+            pointFormat: '{point.x:%e. %b}: {point.y:.2f} lbs'
+
         },
         legend: {
             enabled: false
         },
         series: [{
-            data: [[Date.parse("2016-03-28T15:47:47.000Z"), 113.5],
-                    [Date.parse("2016-03-29T12:39:04.000Z"), 119.9],
-                    [Date.parse("2016-03-31T07:55:26.000Z"), 110.9]],
+            data: <%=raw @time_weight_array %>,
             name: "Body Weight in lbs"
 
         }]
     });
-
-
 });
 
 
