@@ -4,7 +4,7 @@ class BodystatsController < ApplicationController
 
   def index
         @bodystats = Bodystat.order(date: :desc)
-        @weight_array = generate_weight_array(@bodystats)
+        @time_weight_array = generate_time_weight_array(@bodystats)
 
 
   end
@@ -97,12 +97,16 @@ class BodystatsController < ApplicationController
       out +="]"
     end
 
-    def generate_weight_array(bodystats)
+    def generate_time_weight_array(bodystats)
       weight_array = Array.new
+      date_array = Array.new
         bodystats.reverse.each do | stat |
-           weight_array << stat[:body_weight] * 2.205
+
+          weight_array << stat[:body_weight].to_r * 2.205
+          date_string = stat[:date].to_s
+          date_array << stat[:date].to_i * 1000 #milliseconds
         end
-        weight_array = array_to_json weight_array
+        time_weight_array = array_to_json(date_array.zip(weight_array))
     end
 
 
