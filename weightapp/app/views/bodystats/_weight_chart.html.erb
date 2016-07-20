@@ -2,32 +2,47 @@
 
 $(function () {
     $('#container').highcharts({
+        chart: {
+            type: 'spline'
+        },
         title: {
-            text: 'Weight',
-            x: -20 //center
+            text: 'My Bodyweight'
+          
         },
-        subtitle: {
-            text: 'kg',
-            x: -20
-        },
-        
         yAxis: {
             title: {
-                text: 'Temperature (°C)'
+                text: 'lbs'
+            }
+        },
+        xAxis: {
+            type: 'datetime',
+            dateTimeLabelFormats: { // don't display the dummy year
+                month: '%e. %b',
+                year: '%b'
+            },
+            title: {
+                text: 'Date'
             }
         },
         tooltip: {
-            valueSuffix: 'kg'
+            formatter: function () {
+                return this.y + ' <b>lbs</b>';
+            }
+        },
+        legend: {
+            enabled: false
         },
         series: [{
-            data: <%=  @weight_array %>
+            data: [[Date.parse("2016-03-28T15:47:47.000Z"), 113.5],
+                    [Date.parse("2016-03-29T12:39:04.000Z"), 119.9],
+                    [Date.parse("2016-03-31T07:55:26.000Z"), 110.9]],
+            name: "Body Weight in lbs"
 
         }]
     });
 
 
 });
-
 
 
 
