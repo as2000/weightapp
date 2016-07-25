@@ -31,7 +31,12 @@ class BodystatsController < ApplicationController
           ts = DateTime.strptime(dt,"%m/%d/%Y %R")
           statHash[:date] = ts
         when "Weight"
-          statHash[:body_weight] = stat[1].tr("kg", '')
+          if stat[1].end_with "lb"
+            statHash[:body_weight] = stat[1].tr("lb", '')
+          else
+            statHash[:body_weight] = stat[1].tr("kg", '')
+          end
+          
         when "Body Water"
           statHash[:body_water] = stat[1].tr("%", '')
         when "Body Fat"
