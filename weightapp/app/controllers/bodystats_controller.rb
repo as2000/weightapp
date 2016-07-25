@@ -9,13 +9,13 @@ class BodystatsController < ApplicationController
 
   end
 
-	def create
-		render plain: "ok"
-		date = DateTime.parse(params[:date])
-		@bodystat = Bodystat.new(bodystat_params)
-		@bodystat.date = date
-		@bodystat.save
-	end
+  def create
+    render plain: "ok"
+    date = DateTime.parse(params[:date])
+    @bodystat = Bodystat.new(bodystat_params)
+    @bodystat.date = date
+    @bodystat.save
+  end
 
   def mailgun_create
     data = params['body-plain'].split("\r\n")
@@ -31,8 +31,8 @@ class BodystatsController < ApplicationController
           ts = DateTime.strptime(dt,"%m/%d/%Y %R")
           statHash[:date] = ts
         when "Weight"
-          if stat[1].end_with "lb"
-            statHash[:body_weight] = stat[1].tr("lb", '')
+          if stat[1].end_with? "lb"
+            statHash[:body_weight] = stat[1].tr("lb", '').to_f * 0.454
           else
             statHash[:body_weight] = stat[1].tr("kg", '')
           end
@@ -65,33 +65,33 @@ class BodystatsController < ApplicationController
     render plain: "200"
   end
 
-	def destroy
-	  @bodystat = Bodystat.find(params[:id])
-	  @bodystat.destroy
+  def destroy
+    @bodystat = Bodystat.find(params[:id])
+    @bodystat.destroy
 
-	  redirect_to bodystats_path
-	end
+    redirect_to bodystats_path
+  end
 
   def show
     render json: Bodystat.order(date: :asc)
   end
 
 
-	private
-		def bodystat_params
-			params.require(:bodystat).permit(
-				:date,
-				:body_weight,
+  private
+    def bodystat_params
+      params.require(:bodystat).permit(
+        :date,
+        :body_weight,
 
-				:body_water,
-				:body_fat,
-				:bone_weight,
-				:visceral_fat,
-				:muscle_mass,
-				:bmi,
-				:bmr
-			)
-		end
+        :body_water,
+        :body_fat,
+        :bone_weight,
+        :visceral_fat,
+        :muscle_mass,
+        :bmi,
+        :bmr
+      )
+    end
 
     def array_to_json(array)
       out = "["
