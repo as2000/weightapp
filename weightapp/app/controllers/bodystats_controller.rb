@@ -1,6 +1,6 @@
 class BodystatsController < ApplicationController
   require 'date'
-  protect_from_forgery :except => [:create, :mailgun_create]
+  protect_from_forgery :except => [:mailgun_create]
 
   def index
         @bodystats = Bodystat.order(date: :desc)
