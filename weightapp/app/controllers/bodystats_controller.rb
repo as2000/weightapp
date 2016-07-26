@@ -18,8 +18,10 @@ class BodystatsController < ApplicationController
   end
 
   def mailgun_create
+    #split the email body on newline
     data = params['body-plain'].split("\r\n")
     statHash = Hash.new
+
     data.shift
     data.each do | stat |
       stat = stat.split(":", 2)
@@ -36,7 +38,6 @@ class BodystatsController < ApplicationController
           else
             statHash[:body_weight] = stat[1].tr("kg", '')
           end
-          
         when "Body Water"
           statHash[:body_water] = stat[1].tr("%", '')
         when "Body Fat"
