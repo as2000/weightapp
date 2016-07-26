@@ -5,7 +5,7 @@
   <body>
     <div id="chart"></div>
 
-    <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+    <script src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script>
     <script>
 
       var chart = c3.generate({
@@ -22,7 +22,7 @@
           x : {
             type : 'timeseries',
             tick : {
-              format : "%y%m%d" // https://github.com/mbostock/d3/wiki/Time-Formatting#wiki-format
+              format : "%d/%m/%y" // https://github.com/mbostock/d3/wiki/Time-Formatting#wiki-format
             }
           }
         }

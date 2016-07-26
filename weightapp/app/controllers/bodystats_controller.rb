@@ -1,29 +1,28 @@
 class BodystatsController < ApplicationController
   require 'date'
-  protect_from_forgery :except => [:create, :mailgun_create]
+  protect_from_forgery :except => [:mailgun_create]
 
   def index
         @bodystats = Bodystat.order(date: :desc)
-        # @bodystats.each do | stat |
-        #   stat[:body_weight] = stat[:body_weight] * 9
-        # end
+        @time_weight_array = generate_time_weight_array(@bodystats)
+
+
   end
 
-	def create
-		render plain: "ok"
-		date = DateTime.parse(params[:date])
-		@bodystat = Bodystat.new(bodystat_params)
-		@bodystat.date = date
-		@bodystat.save
-	end
+  def create
+    render plain: "ok"
+    date = DateTime.parse(params[:date])
+    @bodystat = Bodystat.new(bodystat_params)
+    @bodystat.date = date
+    @bodystat.save
+  end
 
   def mailgun_create
+    #split the email body on newline
     data = params['body-plain'].split("\r\n")
-    #logger.debug data
     statHash = Hash.new
-    #statHash = Hash.new
+
     data.shift
-     byebug
     data.each do | stat |
       stat = stat.split(":", 2)
       case stat[0]
@@ -34,7 +33,11 @@ class BodystatsController < ApplicationController
           ts = DateTime.strptime(dt,"%m/%d/%Y %R")
           statHash[:date] = ts
         when "Weight"
-          statHash[:body_weight] = stat[1].tr("kg", '')
+          if stat[1].end_with? "lb"
+            statHash[:body_weight] = stat[1].tr("lb", '').to_f * 0.454
+          else
+            statHash[:body_weight] = stat[1].tr("kg", '')
+          end
         when "Body Water"
           statHash[:body_water] = stat[1].tr("%", '')
         when "Body Fat"
@@ -63,33 +66,54 @@ class BodystatsController < ApplicationController
     render plain: "200"
   end
 
-	def destroy
-	  @bodystat = Bodystat.find(params[:id])
-	  @bodystat.destroy
+  def destroy
+    @bodystat = Bodystat.find(params[:id])
+    @bodystat.destroy
 
-	  redirect_to bodystats_path
-	end
+    redirect_to bodystats_path
+  end
 
   def show
     render json: Bodystat.order(date: :asc)
   end
 
 
-	private
-		def bodystat_params
-			params.require(:bodystat).permit(
-				:date,
-				:body_weight,
+  private
+    def bodystat_params
+      params.require(:bodystat).permit(
+        :date,
+        :body_weight,
 
-				:body_water,
-				:body_fat,
-				:bone_weight,
-				:visceral_fat,
-				:muscle_mass,
-				:bmi,
-				:bmr
-			)
-		end
+        :body_water,
+        :body_fat,
+        :bone_weight,
+        :visceral_fat,
+        :muscle_mass,
+        :bmi,
+        :bmr
+      )
+    end
+
+    def array_to_json(array)
+      out = "["
+      array.each do |item|
+        out += item.to_s + ","
+      end
+      out.chomp! ","
+      out +="]"
+    end
+
+    def generate_time_weight_array(bodystats)
+      weight_array = Array.new
+      date_array = Array.new
+        bodystats.reverse.each do | stat |
+
+          weight_array << stat[:body_weight].to_r * 2.205
+          date_string = stat[:date].to_s
+          date_array << stat[:date].to_i * 1000 #milliseconds
+        end
+        time_weight_array = array_to_json(date_array.zip(weight_array))
+    end
 
 
 end

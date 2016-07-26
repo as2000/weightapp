@@ -1,0 +1,45 @@
+<script>
+
+$(function () {
+    $('#container').highcharts({
+        chart: {
+            type: 'spline'
+        },
+        title: {
+            text: 'My Bodyweight'
+          
+        },
+        yAxis: {
+            title: {
+                text: 'lbs'
+            }
+        },
+        xAxis: {
+            type: 'datetime',
+            dateTimeLabelFormats: { // don't display the dummy year
+                month: '%e. %b',
+                year: '%b'
+            },
+            title: {
+                text: 'Date'
+            }
+        },
+        tooltip: {
+            pointFormat: '{point.x:%e. %b}: {point.y:.2f} lbs'
+
+        },
+        legend: {
+            enabled: false
+        },
+        series: [{
+            data: <%=raw @time_weight_array %>,
+            name: "Body Weight in lbs"
+
+        }]
+    });
+});
+
+
+
+</script>
+
