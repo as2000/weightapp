@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'users/new'
+
   resources :bodystats
   resources :charts
   root 'list#index'
