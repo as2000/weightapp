@@ -46,5 +46,11 @@ class UserTest < ActiveSupport::TestCase
         assert_not @user.valid?, "#{email.inspect} should be invalid"
       end
   end
-end
+
+  test "uniqueness of email addresses" do
+    duplicate_user = @user.dup
+    @user.save
+    assert_not duplicate_user.valid?
+  end
+end 
 
