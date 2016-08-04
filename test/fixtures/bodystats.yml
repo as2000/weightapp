@@ -6,7 +6,7 @@ one:
   body_water: 9.99
   body_fat: 9.99
   bone_weight: 9.99
-  viseral_fat: 9.99
+  visceral_fat: 9.99
   muscle_mass: 9.99
   bmi: 9.99
   bmr: 9.99
@@ -17,7 +17,7 @@ two:
   body_water: 9.99
   body_fat: 9.99
   bone_weight: 9.99
-  viseral_fat: 9.99
+  visceral_fat: 9.99
   muscle_mass: 9.99
   bmi: 9.99
   bmr: 9.99
