@@ -21,7 +21,6 @@ class BodystatsController < ApplicationController
     #split the email body on newline
     data = params['body-plain'].split("\r\n")
     statHash = Hash.new
-
     data.shift
     data.each do | stat |
       stat = stat.split(":", 2)
