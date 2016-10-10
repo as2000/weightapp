@@ -27,7 +27,5 @@ module Weightapp
 
     #bower
     config.assets.paths << Rails.root.join('vendor', 'assets', 'components')
-    http://dotwell.io/taking-advantage-of-bower-in-your-rails-4-app/
-      add ctrl p to vim
   end
 end
