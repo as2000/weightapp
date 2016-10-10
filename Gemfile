@@ -27,7 +27,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem "heroku"
 gem 'rake', '~> 11.2.2' 
-
+gem 'bootstrap-sass'
 
 
 # Use ActiveModel has_secure_password
