@@ -49,7 +49,6 @@ class BodystatsController < ApplicationController
           else
             statHash[:bone_weight] = stat[1].tr("kg", '')
           end
-
         when "BMI"
           statHash[:bmi] = stat[1].tr("%", '')
         when "Visceral Fat"
@@ -82,7 +81,6 @@ class BodystatsController < ApplicationController
       params.require(:bodystat).permit(
         :date,
         :body_weight,
-
         :body_water,
         :body_fat,
         :bone_weight,
