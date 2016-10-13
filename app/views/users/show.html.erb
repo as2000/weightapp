@@ -1,0 +1,18 @@
+<table class="table">
+  <tr>
+    <th> user name</th>
+    <th> email </th>
+    <th> created </th>
+    <th> updated </th>
+    <th> now </th>
+    <th> grav </th>
+  </tr>
+  <tr>
+    <td><%= @user.name %></td>
+    <td><%= @user.email %></td>
+    <td><%= @user.created_at %></td>
+    <td><%= @user.updated_at %></td>
+    <td><%= Time.now %></td>
+    <td><%= gravatar_for @user %></td>
+  </tr>
+</table>
