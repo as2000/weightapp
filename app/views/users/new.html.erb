@@ -1,5 +1,6 @@
 <%= provide :title, "sign up" %>
 <%= form_for @user do | f | %>
+  <%= render 'shared/error_messages' %>
   <div class="form-group">
     <%= f.label :name %>
     <%= f.text_field :name, class: "form-control" %>
@@ -20,6 +21,5 @@
     <%= f.password_field :password_confirmation, class: "form-control" %>
   </div>
 
-  <%= f.submit "create account", class: "btn btn-default" %>
+  <%= f.submit "create account", class: "btn btn-primary" %>
 <% end %>
-
