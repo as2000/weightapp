@@ -5,7 +5,12 @@ Rails.application.routes.draw do
   resources :charts
   root 'list#index'
   post '/mailgun/', to: 'bodystats#mailgun_create'
+
   resources :users
+  match '/signup', to: 'users#new', via: 'get'
+  post 'signup', to: 'users#create'
+
+  
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
