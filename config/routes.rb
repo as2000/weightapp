@@ -8,7 +8,7 @@ Rails.application.routes.draw do
 
   resources :users
   match '/signup', to: 'users#new', via: 'get'
-  post 'signup', to: 'users#create'
+  match '/signup', to: 'users#create', via: 'get'
 
   
   # The priority is based upon order of creation: first created -> highest priority.
