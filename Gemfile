@@ -58,4 +58,5 @@ end
 group :production do
   gem 'pg'
   gem 'thin'
+  gem 'rails_12factor'
 end
