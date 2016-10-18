@@ -11,10 +11,22 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
       post users_path, { user:  { name: "",
                                        email: "",
                                        password: "ddd",
-                                       password_confirmation: "ccc"}}
+                                       password_confirmation: "ccc" } }
       end
     assert_template 'users/new'
     assert_select 'div#error_explanation'
     assert_select 'div.field_with_errors'
+  end
+  
+  test 'valid signup information' do
+    assert_difference 'User.count' do
+      post users_path, {user: { name: 'aiden scott',
+                                email: 'aiden.scott12+test@googlemail.com',
+                                password: 'password',
+                                password_confirmation: 'password' }}
+      follow_redirect!
+      assert_template 'users/show'
+      assert_select '.alert-success'
+    end
   end
 end
